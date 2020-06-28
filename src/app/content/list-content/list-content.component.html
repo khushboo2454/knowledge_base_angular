@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <button class="btn btn-info" routerLink="/content/create">Add</button>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Select Category</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="category" #category="ngModel" (change)="getContent()" [(ngModel)]="selectedCategory" required>
+                <option value="">
+                </option>
+                <option value="{{item.id}}" *ngFor="let item of categoryList">
+                    {{item.name}}
+                  </option>
+              </select>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-3">
+        <form>
+            <input type="text" class="form-control" placeholder="Search.." name="search" [(ngModel)]="searchKey" (ngModelChange)="getContent()">
+          </form>
+    </div>
+  </div>
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">title</th>
+            <th scope="col">Description</th>
+            <th scope="col">File</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of contentList;let i=index;">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+            <td><a href="{{item.docUrl}}" target="_blank">{{item.docUrl}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+        <div class="col-md-6">
+          <span class="anchor" id="formUserEdit"></span>
+          <hr class="my-5">
+          <div class="card card-outline-secondary">
+            <div class="card-header">
+              <h3 class="mb-0">Add Content</h3>
+            </div>
+            <div class="card-body">
+              <form #ContentSetForm="ngForm" (ngSubmit)="contentSubmit(ContentSetForm.value, ContentSetForm)" novalidate class="form">
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Title</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="title" #title="ngModel" ngModel required>
+                    <div *ngIf="(ContentSetForm.submitted || title.dirty || title.touched) && title.invalid">
+                      <small class="form-text text-muted danger" *ngIf="title.errors?.required">This Field is required</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Description</label>
+                  <div class="col-lg-9">
+                    <textarea class="form-control" name="description" #description="ngModel" ngModel required></textarea>
+                    <div *ngIf="(ContentSetForm.submitted || description.dirty || description.touched) && description.invalid">
+                        <small class="form-text text-muted danger" *ngIf="description.errors?.required">This Field is required</small>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Select Category</label>
+                  <div class="col-lg-9">
+                    <select class="form-control" name="category" #category="ngModel" ngModel required>
+                      <option value="{{item.id}}" *ngFor="let item of categoryList">
+                        {{item.name}}
+                      </option>
+                    </select>
+                    <div *ngIf="(ContentSetForm.submitted || category.dirty || category.touched) && category.invalid">
+                      <small class="form-text text-muted danger" *ngIf="category.errors?.required">This Field is required</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Select File</label>
+                  <div class="col-lg-9">
+                      <input type="file" name="file" (change)="onFileSelected($event)" #file="ngModel" ngModel required/>
+                      <div *ngIf="(ContentSetForm.submitted || file.dirty || file.touched) && file.invalid">
+                        <small class="form-text text-muted danger" *ngIf="file.errors?.required">This Field is required</small>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-9">
+                    <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                    <button type="submit" class="btn btn-raised btn-primary">
+                        <i class="fa fa-check-square-o"></i> Save
+                      </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>

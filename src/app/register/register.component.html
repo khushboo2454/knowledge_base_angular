@@ -1,0 +1,64 @@
+<section id="login">
+    <div class="container">
+        <div class="row full-height-vh">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="card gradient-indigo-purple text-center width-400">
+                    <div class="card-body">
+                        <div class="card-block">
+                            <h2 class="white">Sign Up</h2>
+                            <form [formGroup]="RegisterForm" (ngSubmit)="registerUser()">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" placeholder="FULL NAME" formControlName="name">
+                                        <span *ngIf="RegisterForm.get('name').hasError('required') && RegisterForm.get('name').touched" class="alert-danger">
+                                            Name is required
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <input type="email" class="form-control" placeholder="EMAIL" formControlName="email">
+                                        <span *ngIf="RegisterForm.get('email').hasError('required') && RegisterForm.get('email').touched" class="alert-danger">
+                                            Email is required
+                                        </span>
+                                        <span *ngIf="!RegisterForm.get('email').hasError('required') && RegisterForm.get('email').hasError('email') && RegisterForm.get('email').touched" class="alert-danger">
+                                            Invalid Email
+                                        </span>                                     
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <input type="password" class="form-control" placeholder="PASSWORD" formControlName="password">
+                                        <span *ngIf="RegisterForm.get('password').hasError('required') && RegisterForm.get('password').touched" class="alert-danger">
+                                            Password is required
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <input type="password" class="form-control" placeholder="CONFIRM PASSWORD" formControlName="confirm_password">
+                                        <span *ngIf="RegisterForm.get('confirm_password').hasError('required') && RegisterForm.get('confirm_password').touched" class="alert-danger">
+                                            Confirm Password is required
+                                        </span>
+                                        <span *ngIf="RegisterForm.get('confirm_password').hasError('equalTo') && RegisterForm.get('confirm_password').touched" class="alert-danger">
+                                            Password and Confirm Password should be same
+                                        </span>
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="col-md-12 form-group align-center footer-btn">
+                                        <button type="submit" [disabled]="RegisterForm.invalid" class="btn btn-primary submit-btn">SIGN UP</button>
+                                        <p class="font-ch">Already signed up? Click
+                                            <a href="javascript:void(0)" routerLink="/login">here</a> to Login</p>
+                                    </div>
+                                </div>
+                            </form>
+                            <app-social-signup></app-social-signup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
