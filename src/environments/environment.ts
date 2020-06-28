@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://0.0.0.0:8000/api'
+  url: 'http://0.0.0.0:8000/api',
+  clientId : 'clientId'
 };
 
 /*
